@@ -1,0 +1,30 @@
+/*
+----------------------------------------------
+	Comandos Laravel
+----------------------------------------------
+*/
+
+composer create-project laravel/laravel:^10.0 company
+
+//creamos el modelo, la migracion el controlador y la factory
+php artisan make:model Department -mcrf --api
+
+php artisan make:model Employee -mcrf --api
+
+//creamos un controlador para el login
+php artisan make:controller AuthController
+
+
+//descomentamos esta linea en kernel.php para activar las peticiones desde el frontend
+\Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+
+//agregamos estas 3 lineas en el .env
+SESSION_DRIVER=cookie
+SESSION_DOMAIN=localhost
+SANCTUM_STATEFUL_DOMAINS=localhost:5173
+
+//en el archivo config/cors.php ponemos en true la siguiente linea
+'supports_credentials' => true,
+
+//en el archivo config/sanctum.php agregamos el tiempo de expiracion
+'expiration' => 43200,
