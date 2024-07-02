@@ -13,7 +13,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::select('employees.*','departments.name')
+        $employees = Employee::select('employees.*','departments.name as department')
                             ->join('departments','employees.department_id','departments.id')
                             ->paginate(10);
         return response()->json($employees);
@@ -108,7 +108,7 @@ class EmployeeController extends Controller
 
     public function all()
     {
-        $employees = Employee::select('employees.*','departments.name')
+        $employees = Employee::select('employees.*','departments.name as department')
                             ->join('departments','employees.department_id','departments.id')
                             ->orderBy('employees.id','DESC')
                             ->get();
